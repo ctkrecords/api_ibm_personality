@@ -6,25 +6,21 @@ module RequestTweets
         puts response.code 
         #puts response.body.class
         tweets = response.body
-        if response.code != 200
+        if response.code != 200 || response.body.to_s == "null"
             nil
         else
             file = File.open("lib/assets/tweets_prueba.txt", "w")
             file.puts tweets.encode!("UTF-8", invalid: :replace, undef: :replace).force_encoding("utf-8")
             file.close
+            personality_request
             cad
         end
-    end
-
-    def self.test_method
-        puts "hola desde Personality Insights"
-        personality_request
     end
 
     def self.personality_request
         include IBMWatson
         authenticator = Authenticators::IamAuthenticator.new(
-            apikey: "IpVwSclXM4QTpGJN_ymBGrV2-Xx4MGlrI1f2EgeMh4E9"
+            apikey: ENV.fetch("IBM_CLOUD_APIKEY")
           )
           personality_insights = PersonalityInsightsV3.new(
             version: "2017-10-13",
@@ -41,9 +37,9 @@ module RequestTweets
               accept_language: "es"
             )
             puts JSON.pretty_generate(profile.result)
-            file = File.open("personality.json", "w")
-            file.puts JSON.pretty_generate(profile.result)
-            file.close
+            #file = File.open("personality.json", "w")
+            #file.puts JSON.pretty_generate(profile.result)
+            #file.close
           end
     end
 end
