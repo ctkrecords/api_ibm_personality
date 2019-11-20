@@ -74,3 +74,5 @@ gem 'ibm_watson', '~> 1.0'
 gem 'httparty', '~> 0.17.1'
 
 gem 'grape', '~> 1.2', '>= 1.2.4'
+
+gem 'grape_on_rails_routes', '~> 0.3.2'
