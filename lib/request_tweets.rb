@@ -1,7 +1,7 @@
 module RequestTweets
     def self.get_tweets(username)
         cad = "Request done!"
-        response = HTTParty.get("http://localhost:3000/api/v1/users/#{username}")
+        response = HTTParty.get("http://personality-api-test.herokuapp.com/api/v1/users/#{username}")
         puts response.code
         tweets = response.body
         if response.code != 200 || response.body.to_s == "null"
@@ -18,7 +18,7 @@ module RequestTweets
     def self.personality_request
         include IBMWatson
         authenticator = Authenticators::IamAuthenticator.new(
-            apikey: ENV.fetch("IBM_CLOUD_APIKEY")
+            apikey: ENV["IBM_CLOUD_APIKEY"]
           )
           personality_insights = PersonalityInsightsV3.new(
             version: "2017-10-13",
@@ -51,7 +51,7 @@ module RequestTweets
         nil
       else
         data_hash = JSON.parse(personality_request)
-        api_key=ENV.fetch("LAST_FM_API_KEY")
+        api_key=ENV["LAST_FM_API_KEY"]
 
         new_hash = {}
         5.times do |num|
