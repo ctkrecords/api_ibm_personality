@@ -62,6 +62,8 @@ module RequestTweets
 
         personalidades = ["Apertura a experiencias", "Responsabilidad", "Extroversión", "Amabilidad", "Rango emocional"]
         genres = ["classical", "blues", "jazz", "folk", "rap", "hip-hop", "soul", "electronic", "dance", "country", "pop", "upbeat"]
+        a = []
+        n = m = 0
 
         case per.last.last
         when personalidades[0]
@@ -71,10 +73,28 @@ module RequestTweets
             jazz = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=jazz&limit=6&api_key=#{api_key}&format=json")
             folk = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=folk&limit=6&api_key=#{api_key}&format=json")
             6.times do |num|
-                apertura_hash[classical['albums']['album'][num]['name']]=classical['albums']['album'][num]['url']
-                apertura_hash[blues['albums']['album'][num]['name']]=blues['albums']['album'][num]['url']
-                apertura_hash[jazz['albums']['album'][num]['name']]=jazz['albums']['album'][num]['url']
-                apertura_hash[folk['albums']['album'][num]['name']]=folk['albums']['album'][num]['url']
+              a[n]="album"
+              a[n+1]=classical['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=classical['albums']['album'][num]['url']
+              apertura_hash[m]=Hash[*a]
+              a[n]="album"
+              a[n+1]=blues['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=blues['albums']['album'][num]['url']
+              apertura_hash[m+1]=Hash[*a]
+              a[n]="album"
+              a[n+1]=jazz['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=jazz['albums']['album'][num]['url']
+              apertura_hash[m+2]=Hash[*a]
+              a[n]="album"
+              a[n+1]=folk['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=folk['albums']['album'][num]['url']
+              apertura_hash[m+3]=Hash[*a]
+              n=n+4
+              m=n
             end
             puts apertura_hash
             JSON.parse(apertura_hash.to_json)
@@ -88,12 +108,38 @@ module RequestTweets
             genre5 = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=#{responsabilidad[4]}&limit=6&api_key=#{api_key}&format=json")
             genre6 = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=#{responsabilidad[5]}&limit=6&api_key=#{api_key}&format=json")
             6.times do |num|
-                responsabilidad_hash[genre1['albums']['album'][num]['name']]=genre1['albums']['album'][num]['url']
-                responsabilidad_hash[genre2['albums']['album'][num]['name']]=genre2['albums']['album'][num]['url']
-                responsabilidad_hash[genre3['albums']['album'][num]['name']]=genre3['albums']['album'][num]['url']
-                responsabilidad_hash[genre4['albums']['album'][num]['name']]=genre4['albums']['album'][num]['url']
-                responsabilidad_hash[genre5['albums']['album'][num]['name']]=genre5['albums']['album'][num]['url']
-                responsabilidad_hash[genre6['albums']['album'][num]['name']]=genre6['albums']['album'][num]['url']
+              a[n]="album"
+              a[n+1]=genre1['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=genre1['albums']['album'][num]['url']
+              responsabilidad_hash[m]=Hash[*a]
+              a[n]="album"
+              a[n+1]=genre2['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=genre2['albums']['album'][num]['url']
+              responsabilidad_hash[m+1]=Hash[*a]
+              a[n]="album"
+              a[n+1]=genre3['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=genre3['albums']['album'][num]['url']
+              responsabilidad_hash[m+2]=Hash[*a]
+              a[n]="album"
+              a[n+1]=genre4['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=genre4['albums']['album'][num]['url']
+              responsabilidad_hash[m+3]=Hash[*a]
+              a[n]="album"
+              a[n+1]=genre5['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=genre5['albums']['album'][num]['url']
+              responsabilidad_hash[m+4]=Hash[*a]
+              a[n]="album"
+              a[n+1]=genre6['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=genre6['albums']['album'][num]['url']
+              responsabilidad_hash[m+5]=Hash[*a]
+              n=n+4
+              m=m+6
             end
             puts responsabilidad_hash
             JSON.parse(responsabilidad_hash.to_json)
@@ -105,11 +151,33 @@ module RequestTweets
             electronic = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=electronic&limit=6&api_key=#{api_key}&format=json")
             dance = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=dance&limit=6&api_key=#{api_key}&format=json")
             6.times do |num|
-                extroversion_hash[rap['albums']['album'][num]['name']]=rap['albums']['album'][num]['url']
-                extroversion_hash[hip_hop['albums']['album'][num]['name']]=hip_hop['albums']['album'][num]['url']
-                extroversion_hash[soul['albums']['album'][num]['name']]=soul['albums']['album'][num]['url']
-                extroversion_hash[electronic['albums']['album'][num]['name']]=electronic['albums']['album'][num]['url']
-                extroversion_hash[dance['albums']['album'][num]['name']]=dance['albums']['album'][num]['url']
+              a[n]="album"
+              a[n+1]=rap['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=rap['albums']['album'][num]['url']
+              extroversion_hash[m]=Hash[*a]
+              a[n]="album"
+              a[n+1]=hip_hop['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=hip_hop['albums']['album'][num]['url']
+              extroversion_hash[m+1]=Hash[*a]
+              a[n]="album"
+              a[n+1]=soul['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=soul['albums']['album'][num]['url']
+              extroversion_hash[m+2]=Hash[*a]
+              a[n]="album"
+              a[n+1]=electronic['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=electronic['albums']['album'][num]['url']
+              extroversion_hash[m+3]=Hash[*a]
+              a[n]="album"
+              a[n+1]=dance['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=dance['albums']['album'][num]['url']
+              extroversion_hash[m+4]=Hash[*a]
+              n=n+4
+              m=m+5
             end
             puts extroversion_hash
             JSON.parse(extroversion_hash.to_json)
@@ -121,12 +189,32 @@ module RequestTweets
             genre3 = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=#{amabilidad[2]}&limit=6&api_key=#{api_key}&format=json")
             upbeat = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=upbeat&limit=3&api_key=#{api_key}&format=json")
             6.times do |num|
-                amabilidad_hash[genre1['albums']['album'][num]['name']]=genre1['albums']['album'][num]['url']
-                amabilidad_hash[genre2['albums']['album'][num]['name']]=genre2['albums']['album'][num]['url']
-                amabilidad_hash[genre3['albums']['album'][num]['name']]=genre3['albums']['album'][num]['url']
+              a[n]="album"
+              a[n+1]=genre1['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=genre1['albums']['album'][num]['url']
+              amabilidad_hash[m]=Hash[*a]
+              a[n]="album"
+              a[n+1]=genre2['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=genre2['albums']['album'][num]['url']
+              amabilidad_hash[m+1]=Hash[*a]
+              a[n]="album"
+              a[n+1]=genre3['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=genre3['albums']['album'][num]['url']
+              amabilidad_hash[m+2]=Hash[*a]
+              n=n+4
+              m=m+3
             end
             3.times do |num|
-                amabilidad_hash[upbeat['albums']['album'][num]['name']]=upbeat['albums']['album'][num]['url']
+              a[n]="album"
+              a[n+1]=upbeat['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=upbeat['albums']['album'][num]['url']
+              amabilidad_hash[m]=Hash[*a]
+              n=n+4
+              m=m+1
             end
             puts amabilidad_hash
             JSON.parse(amabilidad_hash.to_json)
@@ -135,8 +223,18 @@ module RequestTweets
             country = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=country&limit=6&api_key=#{api_key}&format=json")
             pop = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=pop&limit=6&api_key=#{api_key}&format=json")
             6.times do |num|
-                rango_emocional_hash[country['albums']['album'][num]['name']]=country['albums']['album'][num]['url']
-                rango_emocional_hash[pop['albums']['album'][num]['name']]=pop['albums']['album'][num]['url']
+              a[n]="album"
+              a[n+1]=country['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=country['albums']['album'][num]['url']
+              rango_emocional_hash[m]=Hash[*a]
+              a[n]="album"
+              a[n+1]=pop['albums']['album'][num]['name']
+              a[n+2]="link"
+              a[n+3]=pop['albums']['album'][num]['url']
+              rango_emocional_hash[m+1]=Hash[*a]
+              n=n+4
+              m=m+2  
             end
             puts rango_emocional_hash
             JSON.parse(rango_emocional_hash.to_json)
