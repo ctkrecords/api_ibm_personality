@@ -76,3 +76,5 @@ gem 'httparty', '~> 0.17.1'
 gem 'grape', '~> 1.2', '>= 1.2.4'
 
 gem 'grape_on_rails_routes', '~> 0.3.2'
+
+gem 'rack-cors', '~> 1.1'
