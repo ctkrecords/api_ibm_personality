@@ -71,7 +71,7 @@ gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 
 gem 'ibm_watson', '~> 1.0'
 
-gem 'httparty', '~> 0.17.1'
+gem 'httparty', '~> 0.21.0'
 
 gem 'grape', '~> 1.2', '>= 1.2.4'
 
